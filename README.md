@@ -76,3 +76,9 @@ Lots!
   * ~~or direct user to do it in R by the tips from qc report~~
   
                           
+## FlowJo parsing QC discussion
+* xml issue
+	* channel discrepancy
+		* case
+		* prefix
+			- gates refer to the unprefixed channel, but it meant to be prefixed, thus require the correction on xml
