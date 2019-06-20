@@ -38,22 +38,49 @@ int fcstool_print(std::vector<std::string> opts){
 		return 1;
 	}
 	string fcs;
+	unique_ptr<MemCytoFrame> fr;
 	if (vm_sub.count("file")) {
 		fcs = vm_sub["file"].as<string>();
-		MemCytoFrame fr(fcs);
-
-		return 1;
+		fr.reset(new MemCytoFrame(fcs, FCS_READ_PARAM()));
+		fr->read_fcs_header();
+		fr->get_channels();
 	}
 	if (vm_sub.count("summary")) {
-		cout << "cytoframe" << endl;
+		auto keys = fr->get_keywords();
+		auto params = fr->get_params();
+		auto max_chnl = 1+ max_element(params.begin(), params.end(), [](auto &p1, auto &p2){return p1.channel.length() < p2.channel.length();})->channel.length();
+		auto max_marker = 1 + max_element(params.begin(), params.end(), [](auto &p1, auto &p2){return p1.marker.length() < p2.marker.length();})->marker.length();
+		cout << "cytoframe '" << keys["$FIL"] << "'" << endl;
+		cout << "with " << keys["$TOT"] << " cells and " << params.size() << " observables: " << endl;
+		cout << setw(max_chnl) << left << "name" ;
+		cout << setw(max_marker) << right << "desc" ;
+		cout << setw(10) << "minRange" ;
+		cout << setw(10) << "maxRange" << endl;
+		for(auto p :params)
+		{
+			cout << setw(max_chnl) << left << p.channel;
+			cout << setw(max_marker) << right << p.marker;
+			cout << setw(10) << right << setprecision(2) << p.min;
+			cout << setw(10) << right << setprecision(2) << p.max;
+			cout <<endl;
+		}
+
+		cout << keys.size() << " keywords" << endl;
 		return 1;
 	}
 	if (vm_sub.count("channel")) {
-		cout << "channel" << endl;
+		auto chnls = fr->get_channels();
+		for(auto it = chnls.begin(); it != chnls.end()-1; it++)
+			cout << "'" << *it << "' ";
+		cout << "'" << chnls.back() << "'" << endl;
+
 		return 1;
 	}
 	if (vm_sub.count("marker")) {
-		cout << "marker" << endl;
+		auto vec = fr->get_markers();
+		for(auto it = vec.begin(); it != vec.end()-1; it++)
+			cout << "'" << *it << "' ";
+		cout << "'" << vec.back() << "'" << endl;
 		return 1;
 	}
 	cout << ls_desc;

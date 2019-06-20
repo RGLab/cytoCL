@@ -14,6 +14,7 @@
 using namespace std;
 namespace po = boost::program_options;
 #include <iostream>
+#include <iomanip>
 #include <string>
 #include <cytolib/H5CytoFrame.hpp>
 using namespace cytolib;
