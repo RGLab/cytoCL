@@ -37,6 +37,21 @@ void fcs_print_summary(shared_ptr<MemCytoFrame> fr){
 	cout << keys.size() << " keywords" << endl;
 
 }
+void fcs_print_data(shared_ptr<MemCytoFrame> fr){
+	fr->read_fcs_data();
+	auto data = fr->get_data();
+	auto chnls = fr->get_channels();
+	for(auto it = chnls.begin(); it != chnls.end()-1; it++)
+		cout << setw(10) << *it;
+	cout <<endl;
+	cout.width(10);
+	cout.setf(ios::fixed, ios::floatfield);
+	cout.setf(ios::showpoint);
+	cout.precision(2);
+//	cout << 2.12345 << endl;
+	data.head_rows(10).print(cout, "");
+
+}
 int fcstool_print(std::vector<std::string> opts){
 	// ls command has the following options:
 	po::variables_map vm_sub;
@@ -95,6 +110,12 @@ int fcstool_print(std::vector<std::string> opts){
 			cout << "'" << *it << "' ";
 		cout << "'" << vec.back() << "'" << endl;
 	}
+	if (vm_sub.count("data")) {
+		CHECK_FILE_OPT()
+		has_sub_opt = true;
+		fcs_print_data(fr);
+	}
+
 	if(!has_sub_opt)
 	{
 		if(!has_file)
