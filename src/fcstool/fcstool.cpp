@@ -34,11 +34,7 @@ int main(int argc, char ** argv) {
 	po::store(parsed, vm);
 	po::notify(vm);
 
-	if (vm.count("help")) {
-		print_fcstool_help_msg();
-		return 1;
-	}
-
+	//parse subcmd first
 	if (vm.count("command")) {
 	    string cmd = vm["command"].as<string>();
 
@@ -50,9 +46,19 @@ int main(int argc, char ** argv) {
 		{
 			return fcstool_print(opts);
 		}else
+		{
 			cout << "unsupported subcommand: '" << cmd << "'" << endl;
-	} else {
-		print_fcstool_help_msg();
+			return -1;
+		}
 	}
+	else
+	{
+//		if (vm.count("help")) {
+				print_fcstool_help_msg();
+//				return 1;
+//			}
+	}
+
+
 	return 0;
 }
