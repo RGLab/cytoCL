@@ -12,7 +12,7 @@ endif()
 
 include_directories(${CYTOLIB_INCLUDE_DIR})
 
-set ( H5_LIBS libsz.a libhdf5_cpp.a libhdf5.a )
+set ( H5_LIBS libhdf5_cpp.a libhdf5.a libsz.a)
 
 set ( PB_LIBS libprotobuf-lite.a)
 set ( FS_LIBS libstdc++fs.a)
