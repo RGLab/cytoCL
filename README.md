@@ -11,19 +11,32 @@ System requirement
 Installation
 ============
 
-   The Installation uses cmake.
+```
+# enter your project directory
+$ cd cytoCL
 
-   1. `cd` to the source directory `src/fcstool` containing the `CMakeLists.txt` 
-      to configure the package for your system. 
+# it is always a good idea to not pollute the source with build files
+# so create a new build directory
+$ mkdir build
+$ cd build
 
-   	To install the library to custom directory, use `-DCMAKE_INSTALL_PREFIX` option
-     
-   	To locate `cytolib` library, use `-DCYTOLIB_INCLUDE_DIR` option
-     e.g. `cmake -DCMAKE_INSTALL_PREFIX=/usr/local -DCYTOLIB_INCLUDE_DIR=/home/mylib/include` 
-     
-   	it will install the library to  `/usr/local/include` 
-     
+# run cmake to configure the package for your system
+$ cmake ..
 
-  2. Type `make install` to install the package.
+#To install the library to custom directory, use `-DCMAKE_INSTALL_PREFIX` option
+#To locate custom `cytolib` library, use `-DCYTOLIB_INCLUDE_DIR` option
+# e.g. `cmake -DCMAKE_INSTALL_PREFIX=/usr/local -DCYTOLIB_INCLUDE_DIR=/home/mylib/include` 
+   
+$ make
+
+#to install the package
+$ make install
+
+# if you have tests, then the following
+$ ctest 
+```
+   
+
+  
 
  
