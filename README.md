@@ -25,7 +25,7 @@ $ cmake ..
 
 #To install the library to custom directory, use `-DCMAKE_INSTALL_PREFIX` option
 #To locate custom `cytolib` library, use `-DCYTOLIB_INCLUDE_DIR` option
-# e.g. `cmake -DCMAKE_INSTALL_PREFIX=/usr/local -DCYTOLIB_INCLUDE_DIR=/home/mylib/include` 
+# e.g. `cmake -DCMAKE_INSTALL_PREFIX=/usr/local -DCYTOLIB_INCLUDE_DIR=~/mylib/include` 
    
 $ make
 
