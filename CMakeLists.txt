@@ -39,20 +39,10 @@ project (cytoCL)
 	  
   # we add the sub-directories that we want CMake to scan
 #    add_subdirectory(include)
-#    add_subdirectory(thirdparty)
-	include_directories(thirdparty/libhdf5/h5_build/include thirdparty/protobuf/pb_build/include thirdparty/armadillo)
-	#use find_library instead of include_library to ensure full path to the lib
-	find_library ( H5_SZ_LIBS NAMEs libsz.a HINTS "thirdparty/libhdf5/h5_build/lib")
-	set(LIBS ${H5_SZ_LIBS} ${LIBS})
-	find_library ( H5_C_LIBS NAMEs libhdf5.a HINTS "thirdparty/libhdf5/h5_build/lib")
-	set(LIBS ${H5_C_LIBS} ${LIBS})
-	find_library ( H5_CXX_LIBS NAMEs libhdf5_cpp.a HINTS "thirdparty/libhdf5/h5_build/lib")
-	set(LIBS ${H5_CXX_LIBS} ${LIBS})
-#	message(${H5_CXX_LIBS})
-	find_library ( PB_LIBS NAMEs libprotobuf-lite HINTS "thirdparty/protobuf/pb_build/lib")
-	set(LIBS ${PB_LIBS} ${LIBS})
-	message(${PB_LIBS})
-	
+	set(THIRDPARTY_INCLUDE_DIR)
+    add_subdirectory(thirdparty)
+	include_directories(${THIRDPARTY_INCLUDE_DIR})
+		
 	set(CMAKE_CXX_STANDARD 14)
 	set(CMAKE_CXX_STANDARD_REQUIRED ON)
 	set(LIBS ${LIBS} stdc++fs)
