@@ -38,9 +38,8 @@ project (cytoCL)
 	include_directories(${CYTOLIB_INCLUDE_DIR})
 	  
   # we add the sub-directories that we want CMake to scan
-#    add_subdirectory(include)
-	set(THIRDPARTY_INCLUDE_DIR)
     add_subdirectory(thirdparty)
+
 	include_directories(${THIRDPARTY_INCLUDE_DIR})
 		
 	set(CMAKE_CXX_STANDARD 14)

@@ -7,3 +7,5 @@
 	add_custom_target(pblibs DEPENDS ${pb_lib_file})
 	set_source_files_properties( ${pb_lib_file} PROPERTIES GENERATED TRUE ) 
 	
+   	set(INCLUDE_DIR ${INCLUDE_DIR} ${CMAKE_CURRENT_BINARY_DIR}/protobuf/h5_build/include PARENT_SCOPE)
+	set ( PB_LIBS ${CMAKE_CURRENT_BINARY_DIR}/pb_build/lib/libprotobuf-lite.a PARENT_SCOPE)
