@@ -31,7 +31,7 @@ project (cytoCL)
   
 	set(CYTOLIB_INCLUDE_DIR "" CACHE FILEPATH "Path to cytolib includes")
 
-	if(NOT EXISTS CYTOLIB_INCLUDE_DIR/cytolib/global.hpp)
+	if(NOT EXISTS ${CYTOLIB_INCLUDE_DIR}/cytolib/global.hpp)
 	  message(SEND_ERROR "Can't find cytolib/global.hpp in ${CYTOLIB_INCLUDE_DIR}")
 	endif()
 	
