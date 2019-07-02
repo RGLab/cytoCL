@@ -65,8 +65,7 @@ int fcstool_print(std::vector<std::string> opts){
 		("channel,c", "print channels")
 		("marker,m", "print markerss")
 		("keyword,k", "print keywords")
-		("data,d", "print data values")
-		("keyword,k", "print keywords");
+		("data,d", "print data values");
 
 	ls_all.add(ls_desc).add_options()
 		("file", po::value<std::string>(), "file to print");
@@ -109,6 +108,13 @@ int fcstool_print(std::vector<std::string> opts){
 		for(auto it = vec.begin(); it != vec.end()-1; it++)
 			cout << "'" << *it << "' ";
 		cout << "'" << vec.back() << "'" << endl;
+	}
+	if (vm_sub.count("keyword")) {
+		CHECK_FILE_OPT()
+		has_sub_opt = true;
+		auto vec = fr->get_keywords();
+		for(auto it = vec.begin(); it != vec.end()-1; it++)
+			cout << it->first << "\t" << it->second << endl;
 	}
 	if (vm_sub.count("data")) {
 		CHECK_FILE_OPT()
