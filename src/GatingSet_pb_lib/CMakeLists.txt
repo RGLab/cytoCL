@@ -1,2 +1,6 @@
 add_library(gs_pb_lib OBJECT GatingSet.pb.cc)
 add_dependencies( gs_pb_lib h5libs pblibs)
+get_property(dirs DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY INCLUDE_DIRECTORIES)
+#foreach(dir ${dirs})
+#  message(STATUS "${dir}")
+#endforeach()

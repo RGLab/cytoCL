@@ -31,7 +31,7 @@ project (cytoCL)
   
 	set(CYTOLIB_INCLUDE_DIR "" CACHE FILEPATH "Path to cytolib includes")
 
-	if(EXISTS CYTOLIB_INCLUDE_DIR/cytolib/global.hpp)
+	if(NOT EXISTS CYTOLIB_INCLUDE_DIR/cytolib/global.hpp)
 	  message(SEND_ERROR "Can't find cytolib/global.hpp in ${CYTOLIB_INCLUDE_DIR}")
 	endif()
 	
@@ -41,7 +41,7 @@ project (cytoCL)
     add_subdirectory(thirdparty)
 
 	include_directories(${THIRDPARTY_INCLUDE_DIR})
-		
+#	message(${THIRDPARTY_INCLUDE_DIR})	
 	set(CMAKE_CXX_STANDARD 14)
 	set(CMAKE_CXX_STANDARD_REQUIRED ON)
 	set(LIBS ${LIBS} stdc++fs)
