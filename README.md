@@ -5,7 +5,7 @@ System requirement
 ============
 1. cmake
 2. g++ (>=4.9)
-3. boost c++ library
+3. libblas, liblapack, ZLIB, boost c++ library
 4. cytolib c++ library (see https://github.com/RGLab/cytolib/blob/trunk/inst/INSTALL.txt)
 
 Installation
