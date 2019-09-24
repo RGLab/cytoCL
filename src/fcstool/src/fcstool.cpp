@@ -8,7 +8,7 @@
 
 
 #include "fcstool_help_msg.hpp"
-CYTOLIB_INIT();
+//CYTOLIB_INIT();
 
 #include "fcstool_print.hpp"
 

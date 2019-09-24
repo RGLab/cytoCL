@@ -29,13 +29,13 @@ project (cytoCL)
 #    include(thirdparty/tbb.cmake)
   	set(LIBS ${LIBS} libdl.so)
   
-	set(CYTOLIB_INCLUDE_DIR "" CACHE FILEPATH "Path to cytolib includes")
+	set(CYTOLIB_PATH "" CACHE FILEPATH "Path to cytolib library")
 
-	if(NOT EXISTS ${CYTOLIB_INCLUDE_DIR}/cytolib/global.hpp)
-	  message(SEND_ERROR "Can't find cytolib/global.hpp in ${CYTOLIB_INCLUDE_DIR}")
+	if(NOT EXISTS ${CYTOLIB_PATH}/include/cytolib)
+	    message(SEND_ERROR "Can't find cytolib in ${CYTOLIB_PATH}")
 	endif()
 	
-	include_directories(${CYTOLIB_INCLUDE_DIR})
+	include_directories(${CYTOLIB_PATH}/include/cytolib)
 	  
   # we add the sub-directories that we want CMake to scan
     add_subdirectory(thirdparty)
